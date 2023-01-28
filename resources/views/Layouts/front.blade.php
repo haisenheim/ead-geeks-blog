@@ -69,14 +69,14 @@
                                 </a>
                             </li>
                         </ul>
-                        <div class="small text-center text-muted fst-italic">Copyright &copy; Your Website 2022</div>
+                        <div class="small text-center text-muted fst-italic">Copyright &copy; EAD Geeks Blog {{ date('Y') }}</div>
                     </div>
                 </div>
             </div>
         </footer>
         <!-- Bootstrap core JS-->
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="{{ asset('js/bootstrap.bundle.min.js') }}"></script>
         <!-- Core theme JS-->
-        <script src="js/scripts.js"></script>
+        <script src="{{ asset('template/js/scripts.js') }}"></script>
     </body>
 </html>
