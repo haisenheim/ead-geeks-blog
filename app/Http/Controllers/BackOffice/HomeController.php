@@ -9,7 +9,7 @@ class HomeController extends Controller
 {
     //
     public function __invoke(){
-        echo "Je suis la page d'accueil de l'admin";
+        return view('BackOffice.dashboard');
     }
 
 }
