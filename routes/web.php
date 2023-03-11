@@ -29,9 +29,18 @@ Route::prefix('admin')
     ->group(function(){
        Route::get('/dashboard','HomeController');
        Route::get('/articles','ArticleController@index');
+       Route::get('/articles/{id}','ArticleController@show');
+       Route::get('/articles/edit/{id}','ArticleController@edit');
        Route::post('/articles','ArticleController@store');
-       Route::get('/articles/create','ArticleController@create');
+       Route::post('/articles/save','ArticleController@save');
+       Route::get('/article/create','ArticleController@create');
+       Route::get('/article/enable/{id}','ArticleController@enable');
+       Route::get('/article/disable/{id}','ArticleController@disable');
        // Route::post('prescription/edit','PrestationController@editPrescription');
+
+       // gestion des commandes
+       Route::get('/commandes','CommandeController@index');
+       Route::get('/commande/create','CommandeController@create');
     });
 
     Route::namespace('App\Http\Controllers\FrontOffice')

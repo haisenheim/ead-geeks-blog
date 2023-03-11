@@ -5,20 +5,21 @@ namespace App\Http\Controllers\BackOffice;
 use App\Http\Controllers\Controller;
 use App\Models\Article;
 use App\Models\Categorie;
+use App\Models\Commande;
+use App\Models\Produit;
 use Illuminate\Http\Request;
 
-class ArticleController extends Controller
+class CommandeController extends Controller
 {
     //
     public function index(){
-
-        $articles = Article::all();
-        return view('BackOffice.Articles.index')->with(compact('articles'));
+        $commandes = Commande::all();
+        return view('BackOffice.Commandes.index')->with(compact('commandes'));
     }
 
     public function create(){
-        $cats = Categorie::all();
-        return view('BackOffice.Articles.create')->with(compact('cats'));
+        $produits = Produit::all();
+        return view('BackOffice.Commandes.create')->with(compact('produits'));
     }
 
     public function store(Request $request){

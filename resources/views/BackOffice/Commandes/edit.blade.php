@@ -4,28 +4,25 @@
     <div class="container">
         <div class="card">
             <div class="card-header">
-                <h4>NOUVEL ARTICLE</h4>
+                <h4>{{ $article->title }}</h4>
 
             </div>
             <div class="card-body">
-                <form enctype="multipart/form-data" action="/admin/articles" method="post">
+                <form enctype="multipart/form-data" action="/admin/articles/save" method="post">
                     @csrf
+                    <input type="hidden" name="id" value="{{ $article->id }}">
                     <div class="form-group">
-                        <input type="text" class="form-control" required placeholder="Le titre" name="title">
+                        <input type="text" class="form-control" required value="{{ $article->title }}" placeholder="Le titre" name="title">
                     </div>
                     <div class="form-group">
-                        <input type="text" class="form-control" required placeholder="Le sous-titre" name="subtitle">
+                        <input type="text" class="form-control" required value="{{ $article->subtitle }}" placeholder="Le sous-titre" name="subtitle">
                     </div>
                     <div class="form-group">
-                       <select name="categorie_id" required class="form-control" id="">
-                            <option value="">Selectionner la categorie ...</option>
-                            @foreach ($cats as $cat)
-                                <option value="{{ $cat->id }}">{{ $cat->name }}</option>
-                            @endforeach
-                       </select>
+                        <textarea name="body" id="" required class="form-control" placeholder="Saisir le corps de l'article ici .." cols="2" rows="3">{{ $article->body }}</textarea>
                     </div>
                     <div class="form-group">
-                        <textarea name="body" id="" required class="form-control" placeholder="Saisir le corps de l'article ici .." cols="2" rows="3"></textarea>
+                        <input type="checkbox" {{ $article->active?'checked':'' }}  name="active">
+                        <label for="">Cet article va etre en ligne?</label>
                     </div>
                     <div class="form-group">
                         <label for="">Image de l'article</label>
