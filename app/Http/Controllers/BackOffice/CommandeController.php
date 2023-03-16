@@ -24,13 +24,7 @@ class CommandeController extends Controller
 
     public function store(Request $request){
        // dd($request->all());
-        $article = Article::create([
-            'title'=>$request->title,
-            'subtitle'=>$request->subtitle,
-            'categorie_id'=>$request->categorie_id,
-            'body'=>$request->body,
-        ]);
-        return redirect('/admin/articles');
+        return response()->json(['success'=>true,"message"=>"Tout s'est bien passee"]);
 
     }
 

@@ -37,6 +37,7 @@ Route::prefix('admin')
        Route::get('/article/enable/{id}','ArticleController@enable');
        Route::get('/article/disable/{id}','ArticleController@disable');
        // Route::post('prescription/edit','PrestationController@editPrescription');
+       Route::post('/commande','CommandeController@store');
 
        // gestion des commandes
        Route::get('/commandes','CommandeController@index');
@@ -66,7 +67,7 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-Route::get('/login',[UserController::class,'showLoginForm']);
+Route::get('/login',[UserController::class,'showLoginForm'])->name('login');
 Route::post('/login',[UserController::class,'login']);
 
 require __DIR__.'/auth.php';
