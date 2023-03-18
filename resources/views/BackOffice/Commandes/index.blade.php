@@ -38,6 +38,9 @@
                         </tbody>
                     </table>
                 </div>
+                <div>
+                    {{ $commandes->links() }}
+                </div>
             </div>
         </div>
     </div>

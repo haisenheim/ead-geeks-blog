@@ -9,6 +9,7 @@ class Ligne extends Model
 {
     use HasFactory;
     protected $guarded = [];
+    public $timestamps = false;
 
     public function commande(){
         return $this->belongsTo('App\Models\Commande','commande_id');
@@ -16,5 +17,9 @@ class Ligne extends Model
 
     public function produit(){
         return $this->belongsTo('App\Models\Produit','produit_id');
+    }
+
+    public function getMontantAttribute(){
+        return $this->quantity * $this->pu;
     }
 }

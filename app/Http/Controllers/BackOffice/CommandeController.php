@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Article;
 use App\Models\Categorie;
 use App\Models\Commande;
+use App\Models\Ligne;
 use App\Models\Produit;
 use Illuminate\Http\Request;
 
@@ -13,7 +14,9 @@ class CommandeController extends Controller
 {
     //
     public function index(){
-        $commandes = Commande::all();
+        //$commandes = Commande::all();
+        $commandes = Commande::orderBy('created_at','DESC')->get();
+        $commandes = Commande::orderBy('created_at','DESC')->paginate(2);
         return view('BackOffice.Commandes.index')->with(compact('commandes'));
     }
 
@@ -23,8 +26,21 @@ class CommandeController extends Controller
     }
 
     public function store(Request $request){
-       // dd($request->all());
-        return response()->json(['success'=>true,"message"=>"Tout s'est bien passee"]);
+        $data = $request->all();
+        $lignes = $data['lignes'];
+        //dd($lignes);
+        $commande = Commande::create([
+            'name'=>time()
+        ]);
+        for($i=0;$i<count($lignes);$i++){
+            Ligne::create([
+                'commande_id'=>$commande->id,
+                'produit_id'=>$lignes[$i]['id'],
+                'pu'=>$lignes[$i]['pu'],
+                'quantity'=>$lignes[$i]['qte'],
+            ]);
+        }
+        return response()->json(['success'=>true,"message"=>"Tout s'est bien passee",'data'=>$commande]);
 
     }
 
@@ -100,8 +116,8 @@ class CommandeController extends Controller
     }
 
     public function show($id){
-        $article = Article::find($id);
-        return view('BackOffice.Articles.show')->with(compact('article'));
+        $commande = Commande::find($id);
+        return view('BackOffice.Commandes.show')->with(compact('commande'));
 
     }
 }

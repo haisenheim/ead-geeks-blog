@@ -14,5 +14,11 @@ class Commande extends Model
         return $this->hasMany('App\Models\Ligne','commande_id');
     }
 
+    public function getMontantAttribute(){
+        return $this->lignes->reduce(function($carry, $item){
+            return $carry + $item->montant;
+        });
+    }
+
 
 }

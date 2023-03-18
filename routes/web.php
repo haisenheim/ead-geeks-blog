@@ -38,6 +38,7 @@ Route::prefix('admin')
        Route::get('/article/disable/{id}','ArticleController@disable');
        // Route::post('prescription/edit','PrestationController@editPrescription');
        Route::post('/commande','CommandeController@store');
+       Route::get('/commandes/{id}','CommandeController@show');
 
        // gestion des commandes
        Route::get('/commandes','CommandeController@index');

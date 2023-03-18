@@ -109,6 +109,9 @@
                 data:{lignes: donnees,_token:token},
                 success:function(data){
                     console.log(data);
+                   // window.location.href='/admin/commandes/'+data['data']['id'];
+                   window.location.href='/admin/commandes';
+
                 },
                 error:function(){
                     alert('Something went wrong !!! Try again!');
