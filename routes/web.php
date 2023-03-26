@@ -39,6 +39,12 @@ Route::prefix('admin')
        // Route::post('prescription/edit','PrestationController@editPrescription');
        Route::post('/commande','CommandeController@store');
        Route::get('/commandes/{id}','CommandeController@show');
+       Route::get('/produits','CommandeController@getProduits');
+       Route::get('/produits/grid','CommandeController@getGridProduits');
+       Route::get('/produit/create','CommandeController@CreerProduit');
+       Route::post('/produits','CommandeController@stocker');
+       Route::get('/produit/enable/{id}','CommandeController@activer');
+       Route::get('/produit/disable/{id}','CommandeController@desactiver');
 
        // gestion des commandes
        Route::get('/commandes','CommandeController@index');

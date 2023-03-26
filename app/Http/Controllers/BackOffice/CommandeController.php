@@ -21,7 +21,7 @@ class CommandeController extends Controller
     }
 
     public function create(){
-        $produits = Produit::all();
+        $produits = Produit::where('active',1)->get();
         return view('BackOffice.Commandes.create')->with(compact('produits'));
     }
 
@@ -119,5 +119,70 @@ class CommandeController extends Controller
         $commande = Commande::find($id);
         return view('BackOffice.Commandes.show')->with(compact('commande'));
 
+    }
+
+    public function getProduits(){
+        $produits = Produit::all();
+        return view('BackOffice.Produits.index')->with(compact('produits'));
+    }
+
+    public function getGridProduits(){
+        $produits = Produit::all();
+        return view('BackOffice.Produits.grid')->with(compact('produits'));
+    }
+
+
+
+    public function CreerProduit(){
+        return view('BackOffice.Produits.create');
+    }
+
+    public function stocker(Request $request){
+
+        $data = [
+            'name'=>$request->name,
+            'description'=>$request->description,
+            'prix'=>$request->prix,
+        ];
+
+        if($request->image){
+            $file = $request->image;
+            $ext = $file->getClientOriginalExtension();
+            $arr_ext = ['png','jpg','gif','jpeg'];
+
+            if (!file_exists(public_path('img/produits'))) {
+                mkdir(public_path('img/produits'));
+            }
+
+            if(in_array($ext,$arr_ext)) {
+                $name_with_extension = time() . '.' . $ext;
+                if (file_exists(public_path('img/produits/') . $name_with_extension)) {
+                    unlink(public_path('img/produits/') . $name_with_extension);
+                }
+
+                $file->move(public_path('img/produits'), $name_with_extension);
+                $data['image_uri'] = 'img/produits/'.$name_with_extension;
+            }
+        }
+
+
+        Produit::create($data);
+        return redirect('/admin/produits');
+    }
+
+    public function activer($id){
+        // dd($request->all());
+        $article = Produit::find($id);
+        $article->active = 1;
+        $article->save();
+        return redirect()->back();
+     }
+
+    public function desactiver($id){
+        // dd($request->all());
+        $article = Produit::find($id);
+        $article->active = 0;
+        $article->save();
+        return redirect()->back();
     }
 }

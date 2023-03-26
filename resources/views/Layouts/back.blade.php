@@ -31,6 +31,7 @@
                         <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="/admin/dashboard">ACCUEIL</a></li>
                         <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="/admin/articles">ARTICLES</a></li>
                         <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="/admin/commandes">COMMANDES</a></li>
+                        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="/admin/produits">PRODUITS</a></li>
                         <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="/logout">DECONNEXION</a></li>
                     </ul>
                 </div>
